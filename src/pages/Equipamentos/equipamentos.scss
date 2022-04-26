@@ -1,0 +1,46 @@
+.equipamentos {
+    display: flex;
+
+    .equipamentosContainer {
+        flex: 6;
+    }
+
+    .cardEquipamento{
+        display: flex;
+
+        .card{
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            margin: 20px;
+            flex-wrap: wrap;
+            background-color: #f2f2f2;
+            padding: 10px;
+            box-shadow: 2px 2px 2px rgba($color: #333, $alpha: .2);
+            border-radius: 8px;
+
+            h2 {
+                margin-top: 5px;
+                font-size: 1.2rem;
+                font-weight: 600;
+            }
+            .btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-top: 10px;
+                width: 100%;
+                border-radius: 8px;
+                background-color: #fff;
+            }
+            a {
+            
+                text-decoration: none;
+                color: rgb(0, 47, 255);                
+                padding: 10px 20px;
+                cursor: pointer;
+                font-weight: 600;
+            }
+        }
+    }
+}

@@ -1,0 +1,99 @@
+.navbar {
+    height: 52px;
+    border-bottom: .5px solid rgb(230, 227, 227);
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #555;
+    background-color: rgb(3, 6, 48);
+
+    .wrapper {
+        width: 100%;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .search{
+            display: flex;
+            align-items: center;
+            border: 0.5px solid lightgrey;
+            padding: 3px;
+            border-radius: 4px;
+            background-color: #f2f2f2;
+
+            input {
+                width: 350px;
+                border: none;
+                outline: none;
+                background-color: #f2f2f2;
+
+                &::placeholder {
+                    font-size: 13px;
+                }
+            }
+        }
+
+        .items {
+            display: flex;
+            align-items: center;
+
+            .item {
+                display: flex;
+                align-items: center;
+                margin-right: 20px;
+                position: relative;
+                
+                .icon {
+                    color: #f2f2f2;
+                    font-size: 25px;
+                }
+
+                .avatar {
+                    border-radius: 50%;
+                }
+
+                .counter {
+                    width: 15px;
+                    height: 15px;
+                    background-color: red;
+                    border-radius: 50%;
+                    color: #fff;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 10px;
+                    font-weight: bold;
+                    position: absolute;
+                    top: -5px;
+                    right: -2px;
+                }
+            }
+
+        }
+    }
+
+}
+@media only screen and (max-width: 1200px) {
+    .navbar {
+        .wrapper {
+            .search {
+                input {
+                    width: 250px;
+                }
+            }
+        }
+    }
+  }
+
+  @media only screen and (max-width: 680px) {
+    .navbar {
+        .wrapper {
+            .search {
+                input {
+                    width: 100px;
+                }
+            }
+        }
+    }
+  }

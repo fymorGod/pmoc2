@@ -1,0 +1,120 @@
+.app.dark {
+    background-color: #141d26;
+    color: rgb(156, 156, 156);
+
+    .sidebar{
+        border-right: .5px solid rgba(230, 227, 227, 0.151);
+        background-color: 	#243447;
+    }
+    .navbar {
+        border-bottom: .5px solid rgba(230, 227, 227, 0.212);
+        background-color: #243447;
+    }
+    .card {
+        box-shadow: 2px 2px 2px rgba($color: rgb(89, 0, 255), $alpha: .5);
+
+        h2 {
+            color: #333;
+        }
+        .btn {
+            background-color: #243447;
+            border-radius: 8px;
+            a {
+                color: #f2f2f2;
+            }
+        }
+    }
+    .boxCardsCadastro {
+        h2 {
+            color: #333;
+        }
+        a {
+            background-color: #243447;
+            color: #f2f2f2;
+        }
+        .CadEvapo {
+            box-shadow: 2px 2px 2px rgba($color: rgb(62, 24, 199), $alpha: .5);
+        }
+        .CadEquip {
+            box-shadow: 2px 2px 2px rgba($color: rgb(62, 24, 199), $alpha: .5);
+        }
+        .CadConden {
+            box-shadow: 2px 2px 2px rgba($color: rgb(62, 24, 199), $alpha: .5);
+        }
+    }
+    .boxFormManutencao{
+        h2 {
+            color: #f2f2f2;
+        }
+        label {
+            color: #f2f2f2;
+        }
+
+    }
+    .equipamentoFormBox {
+        h2 {
+            color: #f2f2f2;
+        }
+        label {
+            color: #f2f2f2;
+        }
+    }
+    .salasBoxForm {
+        h2 {
+            color: #f2f2f2;
+        }
+        label {
+            color: #f2f2f2;
+        }
+    }
+    .evaporadoraFormBox {
+        h2 {
+            color: #f2f2f2;
+        }
+        label {
+            color: #f2f2f2;
+        }
+    }
+    .boxCondensaForm{
+        h2 {
+            color: #f2f2f2;
+        }
+        label {
+            color: #f2f2f2;
+        }
+    }
+    #file{
+        padding: 10px 5px;
+        width: 200px;
+        background: transparent;
+        border: 1px solid rgb(255, 255, 255);
+        color: rgb(255, 255, 255);
+        text-align: center;
+        cursor: pointer;
+        display: block;
+        border-radius: 8px;
+        transition: .4s;
+        margin-top: 30px;
+        font-weight: 500;
+    }
+    #file:hover{
+        background-color: #243447;
+        color: #fff;
+    }
+    .showEvaporadora {
+        background-color: #141d26;
+        color: #f2f2f2;
+        h2 {
+            color: #f2f2f2;
+        }
+        border-bottom: 1px solid rgba($color: rgb(43, 43, 43), $alpha: .5);
+    }
+    .showCondensadora {
+        background-color: #141d26;
+        color: #f2f2f2;
+        border-bottom: 1px solid rgba($color: rgb(51, 51, 51), $alpha: .5);
+         h2 {
+             color: #f2f2f2;
+         }
+    }
+}

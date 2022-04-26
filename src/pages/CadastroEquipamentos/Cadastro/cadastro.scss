@@ -1,0 +1,97 @@
+.cadastro {
+    display: flex;
+
+    .cadastroContainer {
+        flex: 6;
+    }
+
+    .boxCardsCadastro {
+        display: flex;
+        justify-content: space-evenly;
+        padding: 20px;
+        .CadEquip {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            background-color: #f3f3f3;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 2px 2px 2px rgba($color: #000000, $alpha: .2);
+            img {
+                width: 100%;
+                height: 90px;
+            }
+            h2 {
+                margin-top: 10px;
+                font-size: 1.2rem;
+                font-weight: 600;
+            }
+            a {
+                margin-top: 15px;
+                width: 150px;
+                padding: 10px;
+                text-decoration: none;
+                color: #fff;
+                background-color: rgb(31, 135, 255);
+                border-radius: 8px;
+                text-align: center;
+            }
+        }
+        .CadEvapo {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            background-color: #f3f3f3;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 2px 2px 2px rgba($color: #000000, $alpha: .2);
+            img {
+                width: 100%;
+                height: 90px;
+            }
+            h2 {
+                margin-top: 10px;
+                font-size: 1.2rem;
+                font-weight: 600;
+            }
+            a {
+                margin-top: 15px;
+                width: 150px;
+                padding: 10px;
+                text-decoration: none;
+                color: #fff;
+                background-color: rgb(31, 135, 255);
+                border-radius: 8px;
+                text-align: center;
+            }
+        }
+        .CadConden {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            background-color: #f3f3f3;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 2px 2px 2px rgba($color: #000000, $alpha: .2);
+            img {
+                width: 100%;
+                height: 90px;
+            }
+            h2 {
+                margin-top: 10px;
+                font-size: 1.2rem;
+                font-weight: 600;
+            }
+            a {
+                margin-top: 15px;
+                width: 150px;
+                padding: 10px;
+                text-decoration: none;
+                color: #fff;
+                background-color: rgb(31, 135, 255);
+                border-radius: 8px;
+                text-align: center;
+            }
+        }
+    }
+}
