@@ -6,7 +6,12 @@ import Sidebar from '../../../components/sidebar/Sidebar';
 import './equipamentoform.scss';
 
 export default function Equipamentoform() {
-  
+    const optionStatus = [
+        { id: 1, nome: 'normal' },
+        { id: 2, nome: 'defeito' }
+    ];
+  const [selectValue, setSelectValue] = useState(1);
+
   const [tipo, setTipo] = useState('');
   const [linha, setLinha] = useState('');
 

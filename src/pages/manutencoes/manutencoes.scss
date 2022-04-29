@@ -1,0 +1,100 @@
+.manutencoes {
+    display: flex;
+
+    .manutencoesContainer {
+        flex: 6;
+    }
+
+    .boxCardsManutencoes {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 2rem;
+        height: 150px;
+        margin-top: 1rem;
+        padding: 20px;
+    }
+    .cardManutencao {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #dfdfdf;
+        padding: 20px;
+        box-shadow: 2px 2px 2px rgba($color: #000000, $alpha: .2);
+        border-radius: 12px;
+
+        button {
+            margin-left: 20px;
+            transition: .3s;
+        }
+        button::hover {
+            transform: translateY(10px);
+        }
+        span {
+            font-size: .9rem;
+            color: #333;
+            font-weight: 600;
+            background-color: #1b9c1b;
+            width: 100px;
+            text-align: center;
+            padding: 5px;
+            border-radius: 20px;
+            color: #f2f2f2;
+        }
+        .btnIniciar {
+            background-color: #008cff;
+            font-weight: 600;
+            font-size: .8em;
+            border-radius: 20px;
+            color: #f2f2f2;
+            margin-left: 20px;
+            width: 100px;
+            height: 30px;
+            border: none;
+            box-shadow: 2px 2px 2px rgba($color: #000000, $alpha: .2);
+            cursor: pointer;
+        }
+        .btnInterromper {
+            background-color: #e47900;
+            font-weight: 600;
+            font-size: .8em;
+            border-radius: 20px;
+            color: #f2f2f2;
+            margin-left: 20px;
+            width: 100px;
+            height: 30px;
+            border: none;
+            box-shadow: 2px 2px 2px rgba($color: #000000, $alpha: .2);
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+
+        .btnConcluir {
+            background-color: #ec1000;
+            font-weight: 600;
+            font-size: .8em;
+            border-radius: 20px;
+            color: #f2f2f2;
+            margin-left: 20px;
+            width: 100px;
+            height: 30px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 2px 2px 2px rgba($color: #000000, $alpha: .2);
+        }
+
+        .iconManu {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+
+            h2 {
+                margin-top: 10px;
+                font-size: 1.1rem;
+                font-weight: 600;
+                color: #333;
+            }
+        }
+
+    }
+}

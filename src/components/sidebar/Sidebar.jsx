@@ -51,7 +51,7 @@ export default function Sidebar() {
             <p className="title">Service</p>
             <li>
               <SettingsIcon className="icon"/>
-            <span><Link to="/settings">Settings</Link></span>
+            <span><Link to="/manutencao">Manutenções</Link></span>
             </li>
             <p className="title">User</p>
             <li> 

@@ -10,6 +10,7 @@ export default function Equipamentos() {
     const [equipamentos, setEquipamentos] = useState([]);
     useEffect(()=> {
         app.get('/equipamentos').then(response => {
+            console.log(response.data)
             setEquipamentos(response.data)
         })
     }, [])
@@ -22,7 +23,7 @@ export default function Equipamentos() {
             <div className="cardEquipamento">
                 {
                     equipamentos.map((e) => (
-                        <div className="card">
+                        <div key={e.id} className="card">
                             <img src={evaporadora} alt="" />
                             <h2>{e.codigo}</h2>
                             <div className="btn">

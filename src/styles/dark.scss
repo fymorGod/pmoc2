@@ -2,6 +2,7 @@
     background-color: #141d26;
     color: rgb(156, 156, 156);
 
+
     .sidebar{
         border-right: .5px solid rgba(230, 227, 227, 0.151);
         background-color: 	#243447;
@@ -116,5 +117,16 @@
          h2 {
              color: #f2f2f2;
          }
+    }
+
+    .cardManutencao {        
+        background-color: #243447c0;
+        
+        .iconManu {
+            
+            h2 {
+                color: #f2f2f2;
+            }
+        }
     }
 }

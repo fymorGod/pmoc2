@@ -17,6 +17,8 @@ export default function Equipamento() {
     })
 
 }, [])
+
+
   return (
     <div className='equipamento'>
         <Sidebar/>
@@ -30,7 +32,7 @@ export default function Equipamento() {
                 {
                   equip.map(e => {
                     return (
-                      <h2 key={e.id}>{e.evaporadora.codigo}</h2>
+                      <h2 key={e.id}></h2>
                     )
                   })
                 }
@@ -42,7 +44,7 @@ export default function Equipamento() {
                                     <table key={equipamento.id}>
                                         <tr >
                                             Código:
-                                            <td>{equipamento.evaporadora.codigo}</td>
+                                            <td></td>
                                         </tr>
                                         <tr>
                                             Marca:
@@ -61,7 +63,7 @@ export default function Equipamento() {
                 {
                             equip.map(equipamento => {
                                 return (
-                                    <table key={equipamento.codigo}>
+                                    <table key={equipamento.id}>
                                         <tr >
                                             Potência:
                                             <td>{equipamento.evaporadora.potencia}</td>
@@ -84,8 +86,8 @@ export default function Equipamento() {
                 {
                             equip.map(equipamento => {
                                 return (
-                                    <table className="table">
-                                    <thead key={equipamento.codigo}>
+                                    <table className="table" key={equipamento.id}>
+                                    <thead >
                                       <tr >                                        
                                         <th scope="col">Data</th>
                                         <th scope="col">Descrição</th>
@@ -122,7 +124,7 @@ export default function Equipamento() {
                 {
                   equip.map(e => {
                     return (
-                      <h2 key={e.id}>{e.condensadora.codigo}</h2>
+                      <h2 key={e.id}></h2>
                     )
                   })
                 }
@@ -131,10 +133,10 @@ export default function Equipamento() {
                       {
                             equip.map(equipamento => {
                                 return (
-                                    <table>
-                                        <tr key={equipamento.codigo}>
+                                    <table key={equipamento.id}>
+                                        <tr >
                                         Código:
-                                            <td>{equipamento.condensadora.codigo}</td>
+                                            <td></td>
                                         </tr>
                                         <tr>
                                             Local de Instalação:
@@ -153,8 +155,8 @@ export default function Equipamento() {
                 {
                             equip.map(equipamento => {
                                 return (
-                                    <table>
-                                        <tr key={equipamento.codigo}>
+                                    <table key={equipamento.id}>
+                                        <tr >
                                            Módulo:
                                             <td>{equipamento.condensadora.modulo}</td>
                                         </tr>
@@ -176,9 +178,9 @@ export default function Equipamento() {
                 {
                             equip.map(equipamento => {
                                 return (
-                                    <table className="table">
+                                    <table className="table" key={equipamento.id}>
                                         <thead>
-                                        <tr key={equipamento.codigo}>                                        
+                                        <tr >                                        
                                             <th scope="col">Data</th>
                                             <th scope="col">Descrição</th>
                                             <th scope="col">Status</th>

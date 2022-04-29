@@ -25,6 +25,16 @@ export default function Evaporadora() {
   ];
   
 
+    const uploadData = new FormData();
+    uploadData.append("codigo", codigo)
+    uploadData.append("modelo", modelo)
+    uploadData.append("marca", marca)
+    uploadData.append("id_sala", salasId)
+    uploadData.append("potencia", potencia)
+    uploadData.append("quadro", selectValue)
+    uploadData.append("file", file)
+
+
   useEffect(() => {
       app
         .get("/salas")//rota de salas
@@ -35,16 +45,7 @@ export default function Evaporadora() {
     }, []);
 
     function handleAdd() {
-      app.post('/evaporadoras', {            
-          "codigo": codigo,
-          "modelo":modelo,
-          "marca":marca,
-          "id_sala":salasId,
-          "potencia": potencia,
-          "quadro": quadro,
-          "status": selectValue,
-          "id_doc": file
-        }).then((response) => {
+      app.post('/evaporadoras', uploadData).then((response) => {
             console.log(response.data)
           
         });

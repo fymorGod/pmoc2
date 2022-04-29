@@ -2,7 +2,7 @@ import Sidebar from "../../../components/sidebar/Sidebar";
 import Navbar from "../../../components/navbar/Navbar";
 
 import './condensadora.scss';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { app } from "../../../api/app";
 
 export default function Condensadora() {
@@ -18,16 +18,17 @@ export default function Condensadora() {
       { id: 1, nome: 'normal' },
       { id: 2, nome: 'defeito' }
   ];
+    const uploadData = new FormData();
+    uploadData.append("codigo", codigo)
+    uploadData.append("modelo", modelo)
+    uploadData.append("status", selectValue)
+    uploadData.append("modulo", modulo)
+    uploadData.append("quadro", quadro)
+    uploadData.append("local_instalacao", local_instalacao)
+    uploadData.append("file", file)
+  console.log(uploadData)
   function handleAdd() {
-    app.post('/condensadoras', {            
-        "codigo": codigo,
-        "modelo": modelo,
-        "status": selectValue,
-        "modulo": modulo,
-        "quadro": quadro,
-        "local_instalacao": local_instalacao,
-        "file": file
-      }).then((response) => {
+    app.post('/condensadoras', uploadData).then((response) => {
           console.log(response.data)
       });
   }

@@ -5,19 +5,24 @@ import { useEffect, useState } from 'react';
 import { app } from '../../api/app';
 
 export default function ManutencaoForm() {
-    const [ descricao, setDescricao ] = useState('');
+    
     const [ data, setData ] = useState('');
     const [ tecnico, setTecnico ] = useState('');
     const [ custo, setCusto ] = useState('');
-
     const [ selectValue, setSelectValue ] = useState(1); // preventiva
     const [ selectValueFrequencia, setSelectValueFrequencia ] = useState(1); // frequencia
     
     const [ condensadora, setCondensadora ] = useState([]);
     const [ condensadoraId, setCondensadoraId ] = useState('')
-
+    
     const [ evaporadora, setEvaporadora ] = useState([]);
     const [ evaporadoraId, setEvaporadoraId ] = useState('')
+    
+    const [tarefas, setTarefas] = useState([])
+    const [ tarefasId, setTarefasId ] = useState('')
+
+    const [ desk, setDesk] = useState([]); //descricao
+    const [ desk2, setDesk2] = useState([]); //item
 
 
     const optionFrequencia = [
@@ -29,20 +34,44 @@ export default function ManutencaoForm() {
         { id: 1, nome: 'preventivo' },
         { id: 2, nome: 'corretiva' }
     ];
+    const objeto = [];
+    const listaTipo = [desk2]
+    const listaDescricao = [desk]
+
+    
+    for( let i=0; i < listaDescricao.length; i++){
+        objeto[i] = [listaDescricao[i], listaTipo[i]]
+    }
+    
+    console.log(objeto)
+    
+
+    const addInputButton = (e) => {
+        e.preventDefault();
+
+        setDesk([...desk, ""])
+        setDesk2([...desk2, ""])
+    }
+
+    const handleChangeDescription = (e, index) => {
+        desk[index] = e.target.value;
+        setDesk([...desk])
+        console.log(desk)
+    }
+    const uploadData = new FormData();
+    uploadData.append("tipo", selectValue)
+    uploadData.append("frequencia", selectValueFrequencia)
+    uploadData.append("descricao", "lala")
+    uploadData.append( "status", "a executar")
+    uploadData.append( "custo", custo)
+    uploadData.append( "tec_responsavel", tecnico)
+    uploadData.append("id_condensadora" , condensadoraId)
+    uploadData.append("id_evaporadora", evaporadoraId)
+    uploadData.append("previsao_termino", data)
+    uploadData.append( "tanto_faz", objeto)
 
     function handleAdd() {
-        app.post('/manutencoes', { 
-            "tipo": selectValue,           
-            "descricao": descricao,
-            "frequencia": selectValueFrequencia,
-            "status": "a executar",
-            "tec_responsavel": tecnico,
-            "custo": custo,
-            "id_condensadora" : condensadoraId,
-            "id_evaporadora": evaporadoraId,
-            "previsao_termino": data,
-
-          }).then((response) => {
+        app.post('/manutencoes', uploadData).then((response) => {
               console.log(response.data)
             
           }).catch((err) => {
@@ -67,6 +96,14 @@ export default function ManutencaoForm() {
                 console.error("ops! ocorreu um erro" + err);
             });
     }, []);
+    useEffect(() => {
+        app
+            .get("/tarefas")//rota de salas
+            .then((response) => setTarefas(response.data))
+            .catch((err) => {
+                console.error("ops! ocorreu um erro" + err);
+            });
+    }, []);
     const handleCondensadora = (event) => {
         const getCondensaId = event.target.value;
         console.log(getCondensaId)
@@ -78,11 +115,22 @@ export default function ManutencaoForm() {
         console.log(getEvapoId)
         setEvaporadoraId(getEvapoId);
     }
+    const handleTipo = (event, index) => {
+        console.log(index)
+        const getTipoId = event.target.value;
+        console.log(getTipoId)
+        setTarefasId(getTipoId);
+        desk2[index] = getTipoId 
+        setDesk2([...desk2])
+        console.log(desk2)
+    }
+    
+
   return (
     <div className='manutencaoForm'>
         <Sidebar />
 
-        <div className="manutencaoFormContainer">
+        <div className="manutencaoFormContainer"> 
             <Navbar />
 
             <div className="boxFormManutencao">
@@ -101,12 +149,8 @@ export default function ManutencaoForm() {
                         </select>
                     </div>
                     <div className="form-group">
-                        <label htmlFor="description">Descrição</label>
-                        <input type="text" placeholder="descrição" required onChange={e => setDescricao(e.target.value)} />
-                    </div>
-                    <div className="form-group">
                         <label htmlFor="tecnico">Técnico</label>
-                        <input type="text" placeholder="técnico" required onChange={e => setTecnico(e.target.value)} />
+                        <input type="text" placeholder="técnico"  onChange={e => setTecnico(e.target.value)} />
                     </div>
                     <div className="form-group">
                         <label htmlFor="custo">Custo</label>
@@ -154,9 +198,44 @@ export default function ManutencaoForm() {
                             }
                         </select>
                     </div>
-
+                    <div className="form-group">
+                        {
+                            desk.map((description, index) => (
+                                <div key={index}>
+                                    <label htmlFor={`descricao-${index+1}`}>Descrição</label>
+                                    <input type="text"
+                                    id={`descricao-${index+1}`} 
+                                    value={description}
+                                    placeholder="Description"
+                                    onChange={(e) => handleChangeDescription(e, index)}
+                                    />
+                            
+                                </div>
+                                
+                            ))
+                            
+                        }
+                            {
+                                desk2.map((x2, index) => (
+                                    <select key={index} id="choose" onChange={(e) => handleTipo(e,index)}>
+                                    <option>--Select Tipo--</option>
+            
+                                        {
+                                            tarefas.map((item) => (
+                                                <option key={item.id} value={item.id}> {item.item} </option>
+                                            ))
+                                        }
+                                    </select>
+                                ))   
+                            }
+                           <div>
+                                 <button style={{width: '100px', height: "30px"}} onClick={addInputButton}>+</button>
+                            </div>
+                    </div>
                     <input type="submit" value="Registrar" onClick={handleAdd}/>
+
                 </form>
+             
             </div>
         </div>
     </div>

@@ -12,6 +12,7 @@ import './styles/dark.scss';
 
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
+import Manutencoes from "./pages/manutencoes/Manutencoes";
 
 function App() {
   const {darkMode} = useContext(DarkModeContext)
@@ -22,6 +23,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/equipamentos" element={<Equipamentos/>}/>
+        <Route path="/manutencao" element={<Manutencoes/>}/>
         <Route path="/equipamentos/:id" element={<Equipamento/>}/>
         <Route path="/cadastrar" element={<Cadastro/>}/>
         <Route path="/cadastrar/sala" element={<Salas/>}/>
