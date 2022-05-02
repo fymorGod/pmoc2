@@ -7,18 +7,19 @@ import { app } from '../../api/app';
 export default function ManutencaoForm() {
     
     const [ data, setData ] = useState('');
-    const [ item, setItem ] = useState('');
     const [ tecnico, setTecnico ] = useState('');
     const [ custo, setCusto ] = useState('');
     const [ selectValue, setSelectValue ] = useState(1); // preventiva
-
+    
     const [ condensadora, setCondensadora ] = useState([]);
     const [ condensadoraId, setCondensadoraId ] = useState('')
     
     const [ evaporadora, setEvaporadora ] = useState([]);
     const [ evaporadoraId, setEvaporadoraId ] = useState('')
     
-    const [tarefas, setTarefas] = useState([])
+    const [ item, setItem ] = useState([]); //item
+    const [tarefas, setTarefas] = useState([]) // tarefas
+
     const [ itemsId, setItemsId ] = useState('')
 
     const [ desk, setDesk] = useState([]); //descricao
@@ -28,16 +29,16 @@ export default function ManutencaoForm() {
         { id: 1, nome: 'preventiva' },
         { id: 2, nome: 'corretiva' }
     ];
-    const objeto = [];
+   //const objeto = [];
     const listaTipo = [desk2]
     const listaDescricao = [desk]
 
     
-    for( let i=0; i < listaDescricao.length; i++){
-        objeto[i] = [listaDescricao[i], listaTipo[i]]
-    }
+    // for( let i=0; i < listaDescricao.length; i++){
+    //     objeto[i] = [listaDescricao[i], listaTipo[i]]
+    // }
     
-    console.log(objeto)
+    // console.log(objeto)
     
 
     const addInputButton = (e) => {
@@ -54,14 +55,15 @@ export default function ManutencaoForm() {
     }
     const uploadData = new FormData();
     uploadData.append("tipo", selectValue)
-    uploadData.append("descricao", "lala")
     uploadData.append( "status", "a executar")
     uploadData.append( "custo", custo)
     uploadData.append( "tec_responsavel", tecnico)
     uploadData.append("id_condensadora" , condensadoraId)
     uploadData.append("id_evaporadora", evaporadoraId)
     uploadData.append("previsao_termino", data)
-    uploadData.append( "corretiva", objeto)
+
+    uploadData.append( "item", listaTipo)
+    uploadData.append( "descricao", listaDescricao)
 
     function handleAdd() {
         app.post('/manutencoes', uploadData).then((response) => {
@@ -71,6 +73,28 @@ export default function ManutencaoForm() {
             console.error("ops! ocorreu um erro" + err);
         });;
       }
+
+      const uploadData2 = new FormData();
+      uploadData2.append("tipo", selectValue)
+      uploadData2.append( "status", "a executar")
+      uploadData2.append( "custo", custo)
+      uploadData2.append( "tec_responsavel", tecnico)
+      uploadData2.append("id_condensadora" , condensadoraId)
+      uploadData2.append("id_evaporadora", evaporadoraId)
+      uploadData2.append("previsao_termino", data)
+  
+      uploadData2.append( "item", itemsId)
+      uploadData2.append( "descricao", listaDescricao)
+  
+      function handleAdd2() {
+          app.post('/manutencoes', uploadData).then((response) => {
+                console.log(response.data)
+              
+            }).catch((err) => {
+              console.error("ops! ocorreu um erro" + err);
+          });;
+        }
+  
 
       useEffect(() => {
         app
@@ -92,7 +116,7 @@ export default function ManutencaoForm() {
 
     useEffect(() => {
         app
-            .get("/items")//rota de salas
+            .get("/itens")//rota de salas
             .then((response) => setItem(response.data))
             .catch((err) => {
                 console.error("ops! ocorreu um erro" + err);
@@ -123,7 +147,7 @@ export default function ManutencaoForm() {
     
     const handleOnChangeItem = () => {
         app.get(`/tarefas/${item.id}`).then(res => {
-            setItem(res.data)
+            setTarefas(res.data)
         })
     }
   return (
@@ -169,11 +193,11 @@ export default function ManutencaoForm() {
                             {
                                 desk2.map((x2, index) => (
                                     <select key={index} id="choose" onChange={(e) => handleTipo(e,index)}>
-                                    <option>--Select Tipo--</option>
+                                    <option>--Select Item--</option>
             
                                         {
                                             item.map((item) => (
-                                                <option key={item.id} value={item.id}> {item.item} </option>
+                                                <option key={item.id} value={item.id}> {item.nome} </option>
                                             ))
                                         }
                                     </select>
@@ -184,7 +208,18 @@ export default function ManutencaoForm() {
                             </div>
                     </div> 
                     : <div className="form-group">
+                        <label id="item">Item</label>
+                        <select id="choose" required onChange={(e, index) => handleTipo(e, index)}>
+                            <option>--Select Item--</option>
+                            {
+                                item.map((item) => (
+                                    <option key={item.id} value={item.id}> {item.nome} </option>
+                                ))
+                            }
+                        </select>
+                        {
 
+                        }
                     </div> 
 
                     }
@@ -225,9 +260,9 @@ export default function ManutencaoForm() {
                             }
                         </select>
                     </div>
-
-                    <input type="submit" value="Registrar" onClick={handleAdd}/>
-
+                            {
+                                selectValue === 'corretiva' ? <input type="submit" value="Registrar" onClick={handleAdd}/> : <input type="submit" value="Registrar" onClick={handleAdd2}/>
+                            }
                 </form>
              
             </div>
