@@ -9,28 +9,58 @@ import CheckIcon from '@mui/icons-material/Check';
 
 export default function Manutencoes() {
     const [manutencao, setManutencao] = useState([])
+    const [file, setFile] = useState('')
+
     useEffect(()=> {
         app.get('/manutencoes').then(response => {
             console.log(response.data)
             setManutencao(response.data)
         })
-    }, [])
+    }, []) 
+
+    const handleStart = () => {
+        app.put('/manutencoes', {
+            "status": "em execução"
+        }).then(response => {
+            console.log("mandei o arquivo")
+        })
+    }
+
+    const handleStop = () => {
+        app.put('/manutencoes', {
+            "status": "em espera"
+        }).then(response => {
+            console.log("mandei o arquivo")
+        })
+    }
+
+    const handleFinished = () => {
+        app.put('/manutencoes', {
+            "status": "realizado"
+        }).then(response => {
+            console.log("mandei o arquivo")
+        })
+    }
 
 
     const verificar = (valor) => {
         if (valor === "a executar" || valor === "atrasado" || valor === "em espera"){
-            return ( <button className='btnIniciar'>Iniciar</button> )
+            return ( <button className='btnIniciar' onClick={handleStart()}>Iniciar</button> )
         }
         else if (valor === "em execução") {
-            return ( <div><button className='btnInterromper'>Interromper</button> <button className='btnConcluir'>Finalizar</button></div> )
+            return ( <div><button className='btnInterromper' onClick={handleStop()}>Interromper</button> <button className='btnConcluir' onClick={handleFinished}>Finalizar</button></div> )
         }
         else if (valor === "realizado"){
             return ( <span>Finalizado</span>)
         }
     }
 
+    const uploadData = new FormData();
+    uploadData.append("file", file)
     const handleFile = () => {
-        
+        app.put('/manutencoes', uploadData).then(response => {
+            console.log("mandei o arquivo")
+        })
     }
 
     return (
@@ -50,7 +80,7 @@ export default function Manutencoes() {
                                     <h2>Manutenção {m.tipo} - {m.descricao}</h2>
                                     <div className="inputFile" style={{display: "flex", alignItems: 'center',}}>
                                         <label htmlFor="arquivo" id="file" >Adicionar Arquivo</label>
-                                        <input type="file" name="arquivo" id="arquivo"/>
+                                        <input type="file" name="arquivo" id="arquivo" onChange={e => setFile(e.target.files[0])}/>
                                         <button 
                                         style={{
                                             marginTop: '25px',
@@ -62,7 +92,9 @@ export default function Manutencoes() {
                                             border: 'none',
                                             textAlign: 'center',
                                             cursor: 'pointer'
-                                            }}>
+                                            }}
+                                            onClick={handleFile()}
+                                            >
                                             <CheckIcon className="iconBtn"/>
                                         </button>
                                     </div>

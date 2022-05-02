@@ -61,11 +61,11 @@ export default function Salas() {
                     <input type="text" placeholder="dimensao" required onChange={e => setDimensao(e.target.value)} />
                 </div>
                 <div className="form-group">
-                        <label id="condensadora">Condensadora</label>
+                        <label id="setores">Setores</label>
                         <select id="choose" required onChange={(e) => handleSetores(e)}>
                             <option>--Selecione Setores--</option>
                             {
-                                setores.map((item) => ( <option key={item.id} value={item.id}> {item.codigo} </option>)   
+                                setores.map((item) => ( <option key={item.id} value={item.id}> {item.nome} </option>)   
                                 )
                             }
                         </select>

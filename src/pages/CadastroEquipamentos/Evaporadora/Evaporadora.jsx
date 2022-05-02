@@ -102,6 +102,7 @@ export default function Evaporadora() {
                     <div className="form-group">
                         <label id="status">Status</label>
                         <select id="choose" value={selectValue} required onChange={e => setSelectValue(e.target.value)}>
+                            <option>--Select Status--</option>
                             {
                                 optionStatus.map((item)=> (
                                     <option key={item.id} value={item.nome}> {item.nome} </option>

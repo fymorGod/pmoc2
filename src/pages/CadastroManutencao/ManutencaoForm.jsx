@@ -61,7 +61,7 @@ export default function ManutencaoForm() {
     uploadData.append("id_condensadora" , condensadoraId)
     uploadData.append("id_evaporadora", evaporadoraId)
     uploadData.append("previsao_termino", data)
-    uploadData.append( "tanto_faz", objeto)
+    uploadData.append( "corretiva", objeto)
 
     function handleAdd() {
         app.post('/manutencoes', uploadData).then((response) => {
@@ -149,7 +149,7 @@ export default function ManutencaoForm() {
                         </select>
                     </div>
                     {
-                        selectValue == 'corretiva' ? <div className="form-group">
+                        selectValue === 'corretiva' ? <div className="form-group">
                         {
                             desk.map((description, index) => (
                                 <div key={index}>

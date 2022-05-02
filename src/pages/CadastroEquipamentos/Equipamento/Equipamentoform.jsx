@@ -7,12 +7,12 @@ import './equipamentoform.scss';
 
 export default function Equipamentoform() {
     const optionStatus = [
-        { id: 1, nome: 'normal' },
-        { id: 2, nome: 'defeito' }
+        { id: 1, nome: 'SPLIT' },
+        { id: 2, nome: 'VRF' }
     ];
   const [selectValue, setSelectValue] = useState(1);
 
-  const [tipo, setTipo] = useState('');
+  
   const [linha, setLinha] = useState('');
 
   const [condensadora, setCondensadora] = useState([]);
@@ -41,7 +41,7 @@ export default function Equipamentoform() {
 
   function handleAdd() {
       app.post('/equipamentos', {
-          "tipo": tipo,
+          "tipo": selectValue,
           "linha": linha,            
           "id_condensadora": condensadoraId,
           "id_evaporadora": evaporadoraId
@@ -73,8 +73,15 @@ export default function Equipamentoform() {
             <h2>Cadastrar Equipamento</h2>
                 <form>
                     <div className="form-group">
-                        <label id="tipo">Tipo do Equipamento</label>
-                        <input type="text" placeholder="tipo" required onChange={e => setTipo(e.target.value)} />
+                        <label id="status">Tipo</label>
+                        <select id="choose" value={selectValue} required onChange={e => setSelectValue(e.target.value)}>
+                            <option>--Select Tipo--</option>
+                            {
+                                optionStatus.map((item)=> (
+                                    <option key={item.id} value={item.nome}> {item.nome} </option>
+                                ))
+                            }
+                        </select>
                     </div>
                     <div className="form-group">
                         <label id="linha">Linha</label>
