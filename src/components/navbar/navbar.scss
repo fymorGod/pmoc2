@@ -1,4 +1,5 @@
 .navbar {
+    width: calc(100% - 270px);
     height: 52px;
     border-bottom: .5px solid rgb(230, 227, 227);
     display: flex;
@@ -6,7 +7,7 @@
     font-size: 14px;
     color: #555;
     background-color: rgb(3, 6, 48);
-
+    position: fixed;
     .wrapper {
         width: 100%;
         padding: 20px;
@@ -74,8 +75,18 @@
     }
 
 }
+@media only screen and (max-width: 1400px) {
+    .navbar {
+        width: calc(100% - 170px);
+
+    }
+  }
+
+
+
 @media only screen and (max-width: 1200px) {
     .navbar {
+        width: calc(100% - 140px);
         .wrapper {
             .search {
                 input {
@@ -86,8 +97,9 @@
     }
   }
 
-  @media only screen and (max-width: 680px) {
+  @media only screen and (max-width: 720px) {
     .navbar {
+        width: calc(100% - 220px);
         .wrapper {
             .search {
                 input {

@@ -5,6 +5,7 @@ import Navbar from '../../components/navbar/Navbar';
 import Sidebar from '../../components/sidebar/Sidebar';
 import './manutencoes.scss';
 import evaporadora from "../../assets/evaporadora.png";
+import CheckIcon from '@mui/icons-material/Check';
 
 export default function Manutencoes() {
     const [manutencao, setManutencao] = useState([])
@@ -28,30 +29,9 @@ export default function Manutencoes() {
         }
     }
 
-
-    // const tipoManutencao = (t) => {
-    //     if (t === "preventivo")
-    // }
-
-    // const status = (s) => {
-    //     if (s === "a executar" || s === "atrasado" || s === "em espera"){
-    //         return ( <div className="status">
-    //                     <span className='statusVerde'>A executar</span>
-    //                     <div className='verde'></div>
-    //                 </div>
-    //             )
-    //     }
-    //     else if (s === "em execução") {
-    //         return ( <div className="status">
-    //                     <span></span>
-    //                     <div className='verde'></div>
-    //                 </div> 
-    //         )
-    //     }
-    //     else if (s === "realizado"){
-    //         return ( <span>Finalizado</span>)
-    //     }
-    // }
+    const handleFile = () => {
+        
+    }
 
     return (
     <div className='manutencoes'>
@@ -68,8 +48,50 @@ export default function Manutencoes() {
                                 <div className="iconManu">
                                     <img src={evaporadora} alt="icone evaporadora" />
                                     <h2>Manutenção {m.tipo} - {m.descricao}</h2>
+                                    <div className="inputFile" style={{display: "flex", alignItems: 'center',}}>
+                                        <label htmlFor="arquivo" id="file" >Adicionar Arquivo</label>
+                                        <input type="file" name="arquivo" id="arquivo"/>
+                                        <button 
+                                        style={{
+                                            marginTop: '25px',
+                                            width: "40px",
+                                            height: "35px",
+                                            background: "#39d845",
+                                            borderRadius: "8px",
+                                            outline: 'none',
+                                            border: 'none',
+                                            textAlign: 'center',
+                                            cursor: 'pointer'
+                                            }}>
+                                            <CheckIcon className="iconBtn"/>
+                                        </button>
+                                    </div>
                                 </div>
         
+                            </div>
+
+                            <div className="boxTables" >
+                                   <div className="tables" >
+                                        <table key={m.id} >
+                                            <tr >
+                                                <strong style={{ marginRight: "10px"}}>Técnico Responsável:</strong>
+                                                <td>{m.tec_responsavel}</td>
+                                            </tr>
+                                            <tr>
+                                                <strong>Custo:</strong>
+                                                <td>{m.custo}</td>
+                                            </tr>
+                                            <tr>
+                                                <strong>Status:</strong>
+                                                <td>{m.status}</td>
+                                            </tr>
+                                            <tr >
+                                                <strong>Previsão de Término:</strong>
+                                                <td>{m.previsao_termino}</td>
+                                            </tr>
+                                        </table>
+                                        
+                                   </div>                                            
                             </div>
                             {verificar(m.status)}
                     </div>

@@ -54,10 +54,6 @@ export default function Sidebar() {
             <span><Link to="/manutencao">Manutenções</Link></span>
             </li>
             <p className="title">User</p>
-            <li> 
-              <PersonOutlineIcon className="icon"/>
-            <span><Link to="/profile">Profile</Link></span>
-            </li>
             <li>
             <LogoutIcon className="icon"/>
             <span>Logout</span>

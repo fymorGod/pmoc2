@@ -7,3 +7,10 @@
 body {
     background-color: #f2f2f2;
 }
+
+tr th {
+    padding-right: 10px!important;
+}
+tr td {
+    padding-right: 10px!important;
+}

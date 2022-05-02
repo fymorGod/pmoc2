@@ -24,8 +24,8 @@ export default function Equipamentos() {
                 {
                     equipamentos.map((e) => (
                         <div key={e.id} className="card">
-                            <img src={evaporadora} alt="" />
-                            <h2>{e.codigo}</h2>
+                            <img src={evaporadora} alt="" />                            
+                                <h2>{e.codigo}</h2>                             
                             <div className="btn">
                                 <Link to={`/equipamentos/${e.id}`} >Abrir</Link>
                             </div>

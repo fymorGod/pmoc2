@@ -17,7 +17,29 @@ export default function Equipamento() {
     })
 
 }, [])
+    // const tipoManutencao = (t) => {
+    //     if (t === "preventivo")
+    // }
 
+    // const status = (s) => {
+    //     if (s === "a executar" || s === "atrasado" || s === "em espera"){
+    //         return ( <div className="status">
+    //                     <span className='statusVerde'>A executar</span>
+    //                     <div className='verde'></div>
+    //                 </div>
+    //             )
+    //     }
+    //     else if (s === "em execução") {
+    //         return ( <div className="status">
+    //                     <span></span>
+    //                     <div className='verde'></div>
+    //                 </div> 
+    //         )
+    //     }
+    //     else if (s === "realizado"){
+    //         return ( <span>Finalizado</span>)
+    //     }
+    // }
 
   return (
     <div className='equipamento'>
@@ -32,7 +54,7 @@ export default function Equipamento() {
                 {
                   equip.map(e => {
                     return (
-                      <h2 key={e.id}></h2>
+                      <h2 key={e.id}>{e.codigo}</h2>
                     )
                   })
                 }
@@ -42,16 +64,12 @@ export default function Equipamento() {
                             equip.map(equipamento => {
                                 return (
                                     <table key={equipamento.id}>
-                                        <tr >
-                                            Código:
-                                            <td></td>
-                                        </tr>
                                         <tr>
-                                            Marca:
+                                           <strong> Marca:</strong>
                                             <td>{equipamento.evaporadora.marca}</td>
                                         </tr>
                                         <tr>
-                                            Modelo:
+                                            <strong>Modelo:</strong>
                                             <td>{equipamento.evaporadora.modelo}</td>
                                         </tr>
                                     </table>
@@ -65,15 +83,15 @@ export default function Equipamento() {
                                 return (
                                     <table key={equipamento.id}>
                                         <tr >
-                                            Potência:
+                                            <strong>Potência:</strong>
                                             <td>{equipamento.evaporadora.potencia}</td>
                                         </tr>
                                         <tr>
-                                            Quadro:
+                                            <strong>Quadro:</strong>
                                             <td>{equipamento.evaporadora.quadro}</td>
                                         </tr>
                                         <tr>
-                                            Status:
+                                            <strong>Status:</strong>
                                             <td>{equipamento.evaporadora.status}</td>
                                         </tr>
                                     </table>
@@ -124,7 +142,7 @@ export default function Equipamento() {
                 {
                   equip.map(e => {
                     return (
-                      <h2 key={e.id}></h2>
+                      <h2 key={e.id}>{e.condensadora.codigo}</h2>
                     )
                   })
                 }
@@ -134,16 +152,12 @@ export default function Equipamento() {
                             equip.map(equipamento => {
                                 return (
                                     <table key={equipamento.id}>
-                                        <tr >
-                                        Código:
-                                            <td></td>
-                                        </tr>
                                         <tr>
-                                            Local de Instalação:
+                                            <strong>Local de Instalação:</strong>
                                             <td>{equipamento.condensadora.local_instalacao}</td>
                                         </tr>
                                         <tr>
-                                            Modelo:
+                                            <strong>Modelo:</strong>
                                             <td>{equipamento.condensadora.modelo}</td>
                                         </tr>
                                     </table>
@@ -157,15 +171,15 @@ export default function Equipamento() {
                                 return (
                                     <table key={equipamento.id}>
                                         <tr >
-                                           Módulo:
+                                           <strong>Módulo:</strong>
                                             <td>{equipamento.condensadora.modulo}</td>
                                         </tr>
                                         <tr>
-                                            Quadro:
+                                            <strong>Quadro:</strong>
                                             <td>{equipamento.condensadora.quadro}</td>
                                         </tr>
                                         <tr>
-                                            Status:
+                                            <strong>Status:</strong>
                                             <td>{equipamento.condensadora.status}</td>
                                         </tr>
                                     </table>

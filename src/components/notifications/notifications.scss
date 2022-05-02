@@ -1,0 +1,39 @@
+.notifications {
+    display: flex;
+    
+    .notificationsContainer {
+        flex: 6;    
+        overflow-y: scroll;
+        scrollbar-width: normal;
+        scrollbar-color: #777 #555;
+
+        &::-webkit-scrollbar {
+            width: 5px;
+        }
+        &::-webkit-scrollbar-track {
+            background-color: #00547a;
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: rgb(43, 0, 145);
+        }
+        &::-webkit-scrollbar-thumb:hover {
+            background-color: #777;
+        }    
+    }
+    .boxContainerNoti {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 60px;
+        background-color: #ccc;
+        padding: 20px;
+        
+        .containerNoti {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            
+        }
+    }
+}
