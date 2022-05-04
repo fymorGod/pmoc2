@@ -10,10 +10,12 @@
         justify-content: space-evenly;
         padding: 20px;
         margin-top: 60px;
+        flex-wrap: wrap;
         .CadEquip {
             display: flex;
             align-items: center;
             flex-direction: column;
+            margin-bottom: 15px;
             background-color: #f3f3f3;
             padding: 15px;
             border-radius: 8px;
@@ -44,6 +46,7 @@
             flex-direction: column;
             background-color: #f3f3f3;
             padding: 15px;
+            margin-bottom: 15px;
             border-radius: 8px;
             box-shadow: 2px 2px 2px rgba($color: #000000, $alpha: .2);
             img {
@@ -71,6 +74,7 @@
             align-items: center;
             flex-direction: column;
             background-color: #f3f3f3;
+            margin-bottom: 15px;
             padding: 15px;
             border-radius: 8px;
             box-shadow: 2px 2px 2px rgba($color: #000000, $alpha: .2);
@@ -95,4 +99,15 @@
             }
         }
     }
+    @media only screen and (max-width: 720px) {
+        .CadEquip {
+            margin-bottom: 20px;
+        }
+        .CadConden {
+            margin-bottom: 20px;
+        }
+        .CadEvapo {
+            margin-bottom: 20px;
+        }
+      }
 }

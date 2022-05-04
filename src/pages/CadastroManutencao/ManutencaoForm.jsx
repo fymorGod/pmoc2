@@ -3,6 +3,7 @@ import Navbar from '../../components/navbar/Navbar';
 import Sidebar from '../../components/sidebar/Sidebar';
 import { useEffect, useState } from 'react';
 import { app } from '../../api/app';
+import AddIcon from '@mui/icons-material/Add';
 
 export default function ManutencaoForm() {
     
@@ -76,15 +77,15 @@ export default function ManutencaoForm() {
 
       const uploadData2 = new FormData();
       uploadData2.append("tipo", selectValue)
-      uploadData2.append( "status", "a executar")
-      uploadData2.append( "custo", custo)
-      uploadData2.append( "tec_responsavel", tecnico)
+      uploadData2.append("status", "a executar")
+      uploadData2.append("custo", custo)
+      uploadData2.append("tec_responsavel", tecnico)
       uploadData2.append("id_condensadora" , condensadoraId)
       uploadData2.append("id_evaporadora", evaporadoraId)
       uploadData2.append("previsao_termino", data)
   
-      uploadData2.append( "item", itemsId)
-      uploadData2.append( "descricao", listaDescricao)
+      uploadData2.append( "item_array", itemsId)
+      uploadData2.append( "descricao_array", listaDescricao)
   
       function handleAdd2() {
           app.post('/manutencoes', uploadData).then((response) => {
@@ -172,42 +173,11 @@ export default function ManutencaoForm() {
                             }
                         </select>
                     </div>
+
+
                     {
-                        selectValue === 'corretiva' ? <div className="form-group">
-                        {
-                            desk.map((description, index) => (
-                                <div key={index}>
-                                    <label htmlFor={`descricao-${index+1}`}>Descrição</label>
-                                    <input type="text"
-                                    id={`descricao-${index+1}`} 
-                                    value={description}
-                                    placeholder="Description"
-                                    onChange={(e) => handleChangeDescription(e, index)}
-                                    />
-                            
-                                </div>
-                                
-                            ))
-                            
-                        }
-                            {
-                                desk2.map((x2, index) => (
-                                    <select key={index} id="choose" onChange={(e) => handleTipo(e,index)}>
-                                    <option>--Select Item--</option>
-            
-                                        {
-                                            item.map((item) => (
-                                                <option key={item.id} value={item.id}> {item.nome} </option>
-                                            ))
-                                        }
-                                    </select>
-                                ))   
-                            }
-                           <div>
-                                 <button style={{width: '100px', height: "30px"}} onClick={addInputButton}>+</button>
-                            </div>
-                    </div> 
-                    : <div className="form-group">
+                          selectValue === 'preventiva' ?
+                        <div className="form-group">
                         <label id="item">Item</label>
                         <select id="choose" required onChange={(e, index) => handleTipo(e, index)}>
                             <option>--Select Item--</option>
@@ -217,13 +187,10 @@ export default function ManutencaoForm() {
                                 ))
                             }
                         </select>
-                        {
-
-                        }
+                        
                     </div> 
-
+                    : null
                     }
-
                     <div className="form-group">
                         <label htmlFor="tecnico">Técnico</label>
                         <input type="text" placeholder="técnico"  onChange={e => setTecnico(e.target.value)} />
@@ -260,6 +227,77 @@ export default function ManutencaoForm() {
                             }
                         </select>
                     </div>
+                    
+                    {
+                        selectValue === 'corretiva' ? <div className="especial-div" style={{
+                            display: 'flex',
+                            justifyContent: 'center', 
+                            alignItems: 'center'
+                        }}>
+                        {
+                            desk.map((description, index) => (
+                                <div key={index} className="form-group">
+                                    <label htmlFor={`descricao-${index+1}`}>Descrição</label>
+                                    <input type="text"
+                                    id={`descricao-${index+1}`} 
+                                    value={description}
+                                    placeholder="Description"
+                                    onChange={(e) => handleChangeDescription(e, index)}
+                                    />
+                            
+                                </div>
+                                
+                            ))
+                            
+                        }
+                            {
+                                desk2.map((x2, index) => (
+                                   <div className="form-group">
+                                    <label id="item" htmlFor='choose'>Item</label>
+                                    <select key={index} id="choose" onChange={(e) => handleTipo(e,index)}>
+                                    <option>--Select Item--</option>
+            
+                                        {
+                                            item.map((item) => (
+                                                <option key={item.id} value={item.id}> {item.nome} </option>
+                                            ))
+                                        }
+                                    </select>
+                                   </div>
+                                ))   
+                            }
+                           <div style={{
+                               display: 'flex',
+                               justifyContent: 'center',
+                               alignItems: 'center',
+                               marginTop: '5px',
+                               marginLeft: '15px'
+                           }}>
+                                 <button style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    width: '100px',
+                                    height: "40px",
+                                    background: '#868686',
+                                    border: '1px solid rgba(0,0,0, .3)',
+                                    borderRadius: '4px',
+                                    boxShadow: '2px 2px 2px rgba(0,0,0,.2)',
+                                    cursor: 'pointer',
+                                    
+                                }} onClick={addInputButton}>
+                                    <AddIcon style={{
+                                        width: '15px',
+                                        height: '15px',
+                                        color: '#cecece'
+                                    }}/>
+                                </button>
+                            </div>
+                    </div> 
+                    : null
+
+                    }
+                    
                             {
                                 selectValue === 'corretiva' ? <input type="submit" value="Registrar" onClick={handleAdd}/> : <input type="submit" value="Registrar" onClick={handleAdd2}/>
                             }
