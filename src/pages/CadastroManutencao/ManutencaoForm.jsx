@@ -6,7 +6,8 @@ import { app } from '../../api/app';
 import AddIcon from '@mui/icons-material/Add';
 
 export default function ManutencaoForm() {
-    
+    const [ inputTarefa, setInputTarefa] = useState([])
+
     const [ data, setData ] = useState('');
     const [ tecnico, setTecnico ] = useState('');
     const [ custo, setCusto ] = useState('');
@@ -31,16 +32,10 @@ export default function ManutencaoForm() {
         { id: 2, nome: 'corretiva' }
     ];
    //const objeto = [];
-    const listaTipo = [desk2]
-    const listaDescricao = [desk]
-
-    
-    // for( let i=0; i < listaDescricao.length; i++){
-    //     objeto[i] = [listaDescricao[i], listaTipo[i]]
-    // }
-    
-    // console.log(objeto)
-    
+    //const listaTipo = [desk2]
+    //const listaDescricao = [desk]
+    // console.log(typeof(listaTipo))
+    // console.log(typeof(listaDescricao))
 
     const addInputButton = (e) => {
         e.preventDefault();
@@ -52,22 +47,41 @@ export default function ManutencaoForm() {
     const handleChangeDescription = (e, index) => {
         desk[index] = e.target.value;
         setDesk([...desk])
-        console.log(desk)
+       // console.log(typeof(desk))
     }
-    const uploadData = new FormData();
-    uploadData.append("tipo", selectValue)
-    uploadData.append( "status", "a executar")
-    uploadData.append( "custo", custo)
-    uploadData.append( "tec_responsavel", tecnico)
-    uploadData.append("id_condensadora" , condensadoraId)
-    uploadData.append("id_evaporadora", evaporadoraId)
-    uploadData.append("previsao_termino", data)
+    //console.log(inputTarefa)
+    
+    // const uploadData = new FormData();
+    // uploadData.append("tipo", selectValue)
+    // uploadData.append( "status", "a executar")
+    // uploadData.append( "custo", custo)
+    // uploadData.append( "tec_responsavel", tecnico)
+    // uploadData.append("id_condensadora" , condensadoraId)
+    // uploadData.append("id_evaporadora", evaporadoraId)
+    // uploadData.append("previsao_termino", data)
 
-    uploadData.append( "item", listaTipo)
-    uploadData.append( "descricao", listaDescricao)
+    // uploadData.append( "item_array", listaTipo)
+    // uploadData.append( "descricao_array", listaDescricao)
+
+    const handleTarefas = (e, index) => {
+        inputTarefa[index] = e.target.value;
+       // console.log(tarefa)
+        setInputTarefa([...inputTarefa, ''])
+    }
+    console.log(inputTarefa)
 
     function handleAdd() {
-        app.post('/manutencoes', uploadData).then((response) => {
+        app.post('/manutencoes', {
+            "tipo": selectValue,
+            "status": "a executar",
+            "custo": custo,
+            "tec_responsavel": tecnico,
+            "id_condensadora": condensadoraId,
+            "id_evaporadora": evaporadoraId,
+            "previsao_termino": data,
+            "item_array": desk2,
+            "descricao_array": desk
+        }).then((response) => {
               console.log(response.data)
             
           }).catch((err) => {
@@ -75,20 +89,30 @@ export default function ManutencaoForm() {
         });;
       }
 
-      const uploadData2 = new FormData();
-      uploadData2.append("tipo", selectValue)
-      uploadData2.append("status", "a executar")
-      uploadData2.append("custo", custo)
-      uploadData2.append("tec_responsavel", tecnico)
-      uploadData2.append("id_condensadora" , condensadoraId)
-      uploadData2.append("id_evaporadora", evaporadoraId)
-      uploadData2.append("previsao_termino", data)
+    //   const uploadData2 = new FormData();
+    //   uploadData2.append("tipo", selectValue)
+    //   uploadData2.append("status", "a executar")
+    //   uploadData2.append("custo", custo)
+    //   uploadData2.append("tec_responsavel", tecnico)
+    //   uploadData2.append("id_condensadora" , condensadoraId)
+    //   uploadData2.append("id_evaporadora", evaporadoraId)
+    //   uploadData2.append("previsao_termino", data)
   
-      uploadData2.append( "item_array", itemsId)
-      uploadData2.append( "descricao_array", listaDescricao)
+    //   uploadData2.append( "item_array", itemsId)
+    //   uploadData2.append( "descricao_array", inputTarefa)
   
       function handleAdd2() {
-          app.post('/manutencoes', uploadData).then((response) => {
+          app.post('/manutencoes', {
+            "tipo": selectValue,
+            "status": "a executar",
+            "custo": custo,
+            "tec_responsavel": tecnico,
+            "id_condensadora": condensadoraId,
+            "id_evaporadora": evaporadoraId,
+            "previsao_termino": data,
+            "item_preventiva": itemsId,
+            "tarefas_array": inputTarefa
+        }).then((response) => {
                 console.log(response.data)
               
             }).catch((err) => {
@@ -126,31 +150,45 @@ export default function ManutencaoForm() {
 
     const handleCondensadora = (event) => {
         const getCondensaId = event.target.value;
-        console.log(getCondensaId)
+        //console.log(getCondensaId)
         setCondensadoraId(getCondensaId);
     }
 
     const handleEvaporadora = (event) => {
         const getEvapoId = event.target.value;
-        console.log(getEvapoId)
+        //console.log(getEvapoId)
         setEvaporadoraId(getEvapoId);
     }
     const handleTipo = (event, index) => {
-        console.log(index)
+        // console.log(index)
         const getTipoId = event.target.value;
-        console.log(getTipoId)
+        // console.log(getTipoId)
         
-        setItemsId(getTipoId);
+        //setItemsId(getTipoId);
+        //console.log(itemsId)
         desk2[index] = getTipoId 
         setDesk2([...desk2])
-        console.log(desk2)
+        console.log(typeof(desk2))
+
     }
     
-    const handleOnChangeItem = () => {
-        app.get(`/tarefas/${item.id}`).then(res => {
+    // console.log(desk2)
+    const handleOnChangeItem = (event) => {
+        //event.preventDefault();
+
+        const getItemId = event.target.value;
+        //console.log(getTipoId)        
+        setItemsId(getItemId);
+        
+    }
+  
+    
+   useEffect(() => {
+        app.get(`/tarefas/${itemsId}`).then(res => {
             setTarefas(res.data)
         })
-    }
+   }, [itemsId])
+   console.log(typeof(itemsId))
   return (
     <div className='manutencaoForm'>
         <Sidebar />
@@ -174,23 +212,6 @@ export default function ManutencaoForm() {
                         </select>
                     </div>
 
-
-                    {
-                          selectValue === 'preventiva' ?
-                        <div className="form-group">
-                        <label id="item">Item</label>
-                        <select id="choose" required onChange={(e, index) => handleTipo(e, index)}>
-                            <option>--Select Item--</option>
-                            {
-                                item.map((item) => (
-                                    <option key={item.id} value={item.id}> {item.nome} </option>
-                                ))
-                            }
-                        </select>
-                        
-                    </div> 
-                    : null
-                    }
                     <div className="form-group">
                         <label htmlFor="tecnico">Técnico</label>
                         <input type="text" placeholder="técnico"  onChange={e => setTecnico(e.target.value)} />
@@ -232,7 +253,9 @@ export default function ManutencaoForm() {
                         selectValue === 'corretiva' ? <div className="especial-div" style={{
                             display: 'flex',
                             justifyContent: 'center', 
-                            alignItems: 'center'
+                            alignItems: 'center',
+                            
+                            flexWrap: 'wrap'
                         }}>
                         {
                             desk.map((description, index) => (
@@ -256,6 +279,7 @@ export default function ManutencaoForm() {
                                     <label id="item" htmlFor='choose'>Item</label>
                                     <select key={index} id="choose" onChange={(e) => handleTipo(e,index)}>
                                     <option>--Select Item--</option>
+                                    
             
                                         {
                                             item.map((item) => (
@@ -294,8 +318,38 @@ export default function ManutencaoForm() {
                                 </button>
                             </div>
                     </div> 
-                    : null
+                    :  null
 
+                    }
+
+                    {
+                        selectValue === 'preventiva' ?
+                            <div className="form-group">
+                                <label id="item">Item</label>
+                                <select id="choose" required onChange={(e) => handleOnChangeItem(e)}>
+                                    <option>--Select Item--</option>
+                                    {
+                                        item.map((item) => (
+                                            <option key={item.id} value={item.id}> {item.nome} </option>
+                                        ))
+                                    }
+                                </select>                                
+                        </div> 
+                    : null
+                    }
+                    {
+                        selectValue === 'preventiva' &&  itemsId !== '' ? 
+                        <div className="form-group">
+                            {
+                                tarefas.map((t, index) => (
+                                    <div className="boxLabl">
+                                        <label htmlFor="caixa">{t.descricao}</label>
+                                        <input type="checkbox" id='caixa' name="caixa" value={t.id} onChange={(e) => handleTarefas(e, index)}/>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                        : null
                     }
                     
                             {
