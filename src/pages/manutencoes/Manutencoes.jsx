@@ -11,7 +11,7 @@ export default function Manutencoes() {
     const [manutencao, setManutencao] = useState([])
     const [file, setFile] = useState('')
     const [inicioManutencao, setInicioManutencao] = useState(false)
-    
+
     useEffect(()=> {
         app.get('/manutencoes').then(response => {
             console.log(response.data)
@@ -28,6 +28,10 @@ export default function Manutencoes() {
         })
         setInicioManutencao(false)
     }
+    
+// manutencoes/:id/inicar
+// manutencoes/:id/pausar
+// manutencoes/:id/finalizado
 
     const handleStop = () => {
         app.put('/manutencoes', {
