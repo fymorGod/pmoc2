@@ -10,7 +10,8 @@ import CheckIcon from '@mui/icons-material/Check';
 export default function Manutencoes() {
     const [manutencao, setManutencao] = useState([])
     const [file, setFile] = useState('')
-
+    const [inicioManutencao, setInicioManutencao] = useState(false)
+    
     useEffect(()=> {
         app.get('/manutencoes').then(response => {
             console.log(response.data)
@@ -19,11 +20,13 @@ export default function Manutencoes() {
     }, []) 
 
     const handleStart = () => {
+        setInicioManutencao(true)
         app.put('/manutencoes', {
-            "status": "em execução"
+            "iniciar": inicioManutencao
         }).then(response => {
             console.log("mandei o arquivo")
         })
+        setInicioManutencao(false)
     }
 
     const handleStop = () => {
