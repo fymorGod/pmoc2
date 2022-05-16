@@ -222,6 +222,7 @@ export default function Equipamento() {
                   <button>Remover</button>
                   <button>Editar</button>
                 </div>
+                <a href={`/editar/equipamento/${id}`}>Editar Equipamento</a>
             </div>
         </div>
     </div>

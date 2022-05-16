@@ -5,7 +5,7 @@ import Home from "./pages/home/Home";
 import Condensadora from "./pages/CadastroEquipamentos/Condensadora/Condensadora";
 import Evaporadora from "./pages/CadastroEquipamentos/Evaporadora/Evaporadora";
 import Cadastro from "./pages/CadastroEquipamentos/Cadastro/Cadastro";
-import Equipamentoform from "./pages/CadastroEquipamentos/Equipamento/Equipamentoform";
+
 import Salas from "./pages/CadastroSalas/Salas";
 import ManutencaoForm from "./pages/CadastroManutencao/ManutencaoForm";
 import './styles/dark.scss';
@@ -14,6 +14,8 @@ import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import Manutencoes from "./pages/manutencoes/Manutencoes";
 import Notifications from "./components/notifications/Notifications";
+import Equipamentoform from "./pages/CadastroEquipamentos/Equipamento/Equipamentoform";
+import EditarEquipamentoform from "./pages/Editar/Equipamento/EditarEquipamentoform";
 
 function App() {
   const {darkMode} = useContext(DarkModeContext)
@@ -31,10 +33,12 @@ function App() {
         <Route path="/cadastrar/sala" element={<Salas/>}/>
         <Route path="/cadastrar/manutencao" element={<ManutencaoForm/>}/>
         <Route path="/cadastrar/equipamento" element={<Equipamentoform/>}/>
-        <Route path="/editar/equipamento" element={<Equipamentoform/>}/>
         <Route path="/cadastrar/equipamento/evaporadora" element={<Evaporadora/>}/>
+
+        <Route path="/editar/equipamento/:id" element={<EditarEquipamentoform/>}/>
         <Route path="/editar/equipamento/evaporadora" element={<Evaporadora/>}/>
         <Route path="/editar/equipamento/condensadora" element={<Condensadora/>}/>
+
         <Route path="/cadastrar/equipamento/condensadora" element={<Condensadora/>}/>
       </Routes>
     </BrowserRouter>

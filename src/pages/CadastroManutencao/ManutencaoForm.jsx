@@ -31,7 +31,7 @@ export default function ManutencaoForm() {
         { id: 1, nome: 'preventiva' },
         { id: 2, nome: 'corretiva' }
     ];
-   //const objeto = [];
+    //const objeto = [];
     //const listaTipo = [desk2]
     //const listaDescricao = [desk]
     // console.log(typeof(listaTipo))
@@ -65,8 +65,8 @@ export default function ManutencaoForm() {
 
     const handleTarefas = (e, index) => {
         inputTarefa[index] = e.target.value;
-       // console.log(tarefa)
         setInputTarefa([...inputTarefa, ''])
+        console.log(tarefas)
     }
     console.log(inputTarefa)
 
@@ -188,7 +188,7 @@ export default function ManutencaoForm() {
             setTarefas(res.data)
         })
    }, [itemsId])
-   console.log(typeof(itemsId))
+   console.log(itemsId)
   return (
     <div className='manutencaoForm'>
         <Sidebar />
@@ -342,7 +342,7 @@ export default function ManutencaoForm() {
                         <div className="form-group">
                             {
                                 tarefas.map((t, index) => (
-                                    <div className="boxLabl">
+                                    <div key={index} className="boxLabl">
                                         <label htmlFor="caixa">{t.descricao}</label>
                                         <input type="checkbox" id='caixa' name="caixa" value={t.id} onChange={(e) => handleTarefas(e, index)}/>
                                     </div>
@@ -351,10 +351,10 @@ export default function ManutencaoForm() {
                         </div>
                         : null
                     }
-                    
-                            {
-                                selectValue === 'corretiva' ? <input type="submit" value="Registrar" onClick={handleAdd}/> : <input type="submit" value="Registrar" onClick={handleAdd2}/>
-                            }
+            
+                    {
+                        selectValue === 'corretiva' ? <input type="submit" value="Registrar" onClick={handleAdd}/> : <input type="submit" value="Registrar" onClick={handleAdd2}/>
+                    }
                 </form>
              
             </div>

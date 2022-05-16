@@ -1,11 +1,12 @@
 
+import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { app } from '../../../api/app';
 import Navbar from '../../../components/navbar/Navbar';
 import Sidebar from '../../../components/sidebar/Sidebar';
 import './equipamentoform.scss';
 
-export default function Equipamentoform() {
+export default function EditarEquipamentoform() {
   
   const [tipo, setTipo] = useState('');
   const [linha, setLinha] = useState('');
@@ -15,6 +16,8 @@ export default function Equipamentoform() {
 
   const [evaporadora, setEvaporadora] = useState([]);
   const [ evaporadoraId, setEvaporadoraId] = useState('')
+
+  const { id } = useParams();
 
   useEffect(() => {
       app
@@ -35,26 +38,27 @@ export default function Equipamentoform() {
   }, []);
 
   function handleAdd() {
-      app.put('/equipamentos', {
+      app.put(`/equipamentos/${id}`, {
           "tipo": tipo,
           "linha": linha,            
           "id_condensadora": condensadoraId,
           "id_evaporadora": evaporadoraId
       }).then((response) => {
           console.log(response.data)
+
           setCondensadora(response.data)
           setEvaporadora(response.data)
       });
   }
   const handleCondensadora = (event) => {
       const getCondensaId = event.target.value;
-      console.log(getCondensaId)
+      //console.log(getCondensaId)
       setCondensadoraId(getCondensaId);
   }
 
   const handleEvaporadora = (event) => {
       const getEvapoId = event.target.value;
-      console.log(getEvapoId)
+      //console.log(getEvapoId)
       setEvaporadoraId(getEvapoId);
   }
 
@@ -65,7 +69,7 @@ export default function Equipamentoform() {
             <Navbar/>
             
             <div className="equipamentoFormBox">
-            <h2>Cadastrar Equipamento</h2>
+            <h2>Editar Equipamento</h2>
                 <form>
                     <div className="form-group">
                         <label id="tipo">Tipo do Equipamento</label>
