@@ -18,36 +18,6 @@ export default function Manutencoes() {
         })
     }, [])
 
-    //     const handleStart = () => {
-    //         setInicioManutencao(true)
-    //         app.put('/manutencoes', {
-    //             "iniciar": inicioManutencao
-    //         }).then(response => {
-    //             console.log("mandei o arquivo")
-    //         })
-    //         setInicioManutencao(false)
-    //     }
-
-    // // manutencoes/:id/inicar
-    // // manutencoes/:id/pausar
-    // // manutencoes/:id/finalizado
-
-    //     const handleStop = () => {
-    //         app.put('/manutencoes', {
-    //             "status": "em espera"
-    //         }).then(response => {
-    //             console.log("mandei o arquivo")
-    //         })
-    //     }
-
-    // const handleFinished = () => {
-    //     app.put('/manutencoes', {
-    //         "status": "realizado"
-    //     }).then(response => {
-    //         console.log("mandei o arquivo")
-    //     })
-    // }
-
 
     const verificar = (valor) => {
         if (valor === "a executar" || valor === "atrasado" || valor === "em espera") {

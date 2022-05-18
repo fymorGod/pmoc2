@@ -8,7 +8,7 @@
     .cardEquipamento{
         display: flex;
         margin-top: 60px;
-        
+        flex-wrap: wrap;
         .card{
             display: flex;
             align-items: center;

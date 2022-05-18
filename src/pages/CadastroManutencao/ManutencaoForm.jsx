@@ -88,18 +88,6 @@ export default function ManutencaoForm() {
             console.error("ops! ocorreu um erro" + err);
         });;
       }
-
-    //   const uploadData2 = new FormData();
-    //   uploadData2.append("tipo", selectValue)
-    //   uploadData2.append("status", "a executar")
-    //   uploadData2.append("custo", custo)
-    //   uploadData2.append("tec_responsavel", tecnico)
-    //   uploadData2.append("id_condensadora" , condensadoraId)
-    //   uploadData2.append("id_evaporadora", evaporadoraId)
-    //   uploadData2.append("previsao_termino", data)
-  
-    //   uploadData2.append( "item_array", itemsId)
-    //   uploadData2.append( "descricao_array", inputTarefa)
   
       function handleAdd2() {
           app.post('/manutencoes', {

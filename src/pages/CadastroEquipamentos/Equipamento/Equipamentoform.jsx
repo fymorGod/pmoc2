@@ -38,18 +38,21 @@ export default function Equipamentoform() {
           });
   }, []);
 
-  function handleAdd() {
-      app.post('/equipamentos', {
-          "tipo": selectValue,
-          "linha": linha,            
-          "id_condensadora": condensadoraId,
-          "id_evaporadora": evaporadoraId
-      }).then((response) => {
-          console.log(response.data)
-          setCondensadora(response.data)
-          setEvaporadora(response.data)
-      });
+  async function handleAdd() {
+      try {
+        await app.post('/equipamentos', {
+            "tipo": selectValue,
+            "linha": linha,            
+            "id_condensadora": condensadoraId,
+            "id_evaporadora": evaporadoraId
+        })
+        alert('Equipamento criado com sucesso')
+      }
+      catch (err) {
+        console.log(err)
+      }
   }
+
   const handleCondensadora = (event) => {
       const getCondensaId = event.target.value;
       console.log(getCondensaId)
@@ -88,7 +91,7 @@ export default function Equipamentoform() {
                     </div>
                     <div className="form-group">
                         <label id="condensadora">Condensadora</label>
-                        <select id="choose" required onChange={(e) => handleCondensadora(e)}>
+                        <select id="choose" onChange={(e) => handleCondensadora(e)}>
                             <option>--Select Condensadora--</option>
                             {
                                 condensadora.map((item) => ( <option key={item.id} value={item.id}> {item.codigo} </option>)   
@@ -109,7 +112,7 @@ export default function Equipamentoform() {
                             }
                         </select>
                     </div>
-                    <input type="submit" id='registrar' value="Registrar" onClick={handleAdd}/>
+                    <input type="submit" id='registrar' value="Registrar" onClick={() => handleAdd()}/>
                 </form>
             </div>
         </div>

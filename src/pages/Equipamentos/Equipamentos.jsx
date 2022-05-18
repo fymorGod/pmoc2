@@ -8,11 +8,17 @@ import {Link} from "react-router-dom";
 
 export default function Equipamentos() {
     const [equipamentos, setEquipamentos] = useState([]);
+
     useEffect(()=> {
-        app.get('/equipamentos').then(response => {
-            console.log(response.data)
-            setEquipamentos(response.data)
-        })
+
+        const fetchData = async () => {
+            const data = await app.get('/equipamentos');
+            console.log(data)
+            setEquipamentos(data['data'])
+        }
+
+        fetchData()
+            .catch(console.error);
     }, [])
 
   return (
@@ -22,10 +28,10 @@ export default function Equipamentos() {
             <Navbar />
             <div className="cardEquipamento">
                 {
-                    equipamentos.map((e) => (
-                        <div key={e.id} className="card">
+                    Object.entries(equipamentos).map(([e, value]) => (
+                        <div key={value.id} className="card">
                             <img src={evaporadora} alt="" />                            
-                                <h2>{e.codigo}</h2>                             
+                                <h2>{value.codigo}</h2>                             
                             <div className="btn">
                                 <Link to={`/equipamentos/${e.id}`} >Abrir</Link>
                             </div>

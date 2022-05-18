@@ -20,16 +20,20 @@ export default function Salas() {
                 console.error("ops! ocorreu um erro" + err);
             });
     }, []);
-    function handleAdd() {
-        app.post('/salas', {            
-            "nome": nome,
-            "andar": andar,
-            "dimensao": dimensao,
-            "id_setor": setoresId
-            }).then((response) => {
-                console.log(response.data)
-            
+    async function handleAdd() {
+        try {
+           await app.post('/salas', {            
+                "nome": nome,
+                "andar": andar,
+                "dimensao": dimensao,
+                "id_setor": setoresId
+                }).then((response) => {
+                    console.log(response.data)                
             });
+            alert('Deu certo')
+        } catch (err) {
+            console.warn(err)
+            }
         }
     
     const handleSetores = (event) => {
