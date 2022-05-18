@@ -116,7 +116,7 @@ export default function Evaporadora() {
                         <label id="file" htmlFor='arquivo'>Nota fiscal</label>
                         <input type="file" name="arquivo" id="arquivo" onChange={e => setFile(e.target.files[0])} />
                     </div>
-                    <input type="submit" id='registrar' value="Registrar" onClick={handleAdd}/>
+                    <input type="submit" id='registrar' value="Registrar" onClick={() => handleAdd()}/>
 
                 </form>
         </div>
