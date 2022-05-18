@@ -9,7 +9,7 @@ export default function Evaporadora() {
   const [salas, setSalas] = useState([]);
   const [ salasId, setSalasId] = useState('')
   
-  const [codigo, setCodigo] = useState('');
+  const [codigo, setCodigo] = useState(''); 
   const [modelo, setModelo] = useState('');
   const [marca, setMarca] = useState('');
   const [potencia, setPotencia] = useState('');
@@ -24,33 +24,40 @@ export default function Evaporadora() {
       {id: 2, nome: 'defeito'}
   ];
   
-
+    //objeto que receber os valores para envio do formulário
     const uploadData = new FormData();
     uploadData.append("codigo", codigo)
     uploadData.append("modelo", modelo)
     uploadData.append("marca", marca)
     uploadData.append("id_sala", salasId)
+    uploadData.append("status", selectValue)
     uploadData.append("potencia", potencia)
-    uploadData.append("quadro", selectValue)
+    uploadData.append("quadro", quadro)
     uploadData.append("file", file)
 
-
+  //função de recebimento de dados da API
   useEffect(() => {
       app
         .get("/salas")//rota de salas
         .then((response) => setSalas(response.data))
         .catch((err) => {
-          console.error("ops! ocorreu um erro" + err);
+          console.error("ops! ocorreu um erro" + err);//caso haja erros, retornar o valor do error
         });
     }, []);
 
-    function handleAdd() {
-      app.post('/evaporadoras', uploadData).then((response) => {
-            console.log(response.data)
-          
-        });
+    //função de envio do formulário
+   async function handleAdd() {
+        try {
+            await app.put('/evaporadoras', uploadData).then((response) => {
+                console.log(response.data)              
+            });
+            window.alert('Evaporadora criada com sucesso!')
+        } catch (error) {
+            window.alert(error)
+        }
     }
 
+    //função para pegar o valor do id das salas 
     const handleSala = (event) => {
       const getCondensaId = event.target.value;
       console.log(getCondensaId)
@@ -114,7 +121,7 @@ export default function Evaporadora() {
                         <label id="file" htmlFor='arquivo'>Nota fiscal</label>
                         <input type="file" name="arquivo" id="arquivo" onChange={e => setFile(e.target.files[0])} />
                     </div>
-                    <input type="submit" id='registrar' value="Registrar" onClick={handleAdd}/>
+                    <input type="submit" id='registrar' value="Registrar" onClick={() => handleAdd()}/>
 
                 </form>
         </div>

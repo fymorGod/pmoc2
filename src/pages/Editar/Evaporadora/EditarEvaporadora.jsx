@@ -33,21 +33,25 @@ export default function Evaporadora() {
           console.error("ops! ocorreu um erro" + err);
         });
     }, []);
+    const uploadData = new FormData();
+    uploadData.append("codigo", codigo)
+    uploadData.append("modelo", modelo)
+    uploadData.append("marca", marca)
+    uploadData.append("id_sala", salasId)
+    uploadData.append("status", selectValue)
+    uploadData.append("potencia", potencia)
+    uploadData.append("quadro", quadro)
+    uploadData.append("file", file)
 
-    function handleAdd() {
-      app.put('/evaporadoras', {            
-          "codigo": codigo,
-          "modelo":modelo,
-          "marca":marca,
-          "id_sala":salasId,
-          "potencia": potencia,
-          "quadro": quadro,
-          "status": selectValue,
-          "id_doc": file
-        }).then((response) => {
+    async function handleAdd() {
+      try {
+        await app.put('/evaporadoras', uploadData).then((response) => {
             console.log(response.data)
-          
         });
+        window.alert('deu certo');          
+      } catch (error) {
+        window.alert(error)
+      }
     }
 
     const handleSala = (event) => {
